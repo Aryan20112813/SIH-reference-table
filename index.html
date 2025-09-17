@@ -25,6 +25,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            padding-bottom: 15px;
         }
 
         h2.title {
@@ -49,10 +50,18 @@
             border-radius: 2px;
         }
 
+        /* ✅ Table wrapper for scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .research-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 700px;
+            /* ✅ Keeps table readable, adds scroll on small screens */
         }
 
         .research-table th,
@@ -116,6 +125,8 @@
         .why-cell {
             line-height: 1.6;
             color: #555;
+            min-width: 250px;
+            /* ✅ Prevents text from shrinking too much */
         }
 
         .highlight {
@@ -123,41 +134,21 @@
             color: #ff6f61;
         }
 
-        /* ✅ Responsive styles */
-        @media (max-width: 900px) {
-            .research-table thead {
-                display: none;
+        /* ✅ Better readability on very small devices */
+        @media (max-width: 480px) {
+            h2.title {
+                font-size: 1.6em;
             }
 
-            .research-table,
-            .research-table tbody,
-            .research-table tr,
+            .research-table th,
             .research-table td {
-                display: block;
-                width: 100%;
+                padding: 14px;
+                font-size: 0.9em;
             }
 
-            .research-table tr {
-                margin-bottom: 20px;
-                background: #fff;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-                border-radius: 10px;
-                overflow: hidden;
-                padding: 10px;
-            }
-
-            .research-table td {
-                text-align: left;
-                padding: 12px 15px;
-                position: relative;
-            }
-
-            .research-table td::before {
-                content: attr(data-label);
-                font-weight: 600;
-                color: #004d99;
-                display: block;
-                margin-bottom: 6px;
+            .why-cell {
+                font-size: 0.9em;
+                line-height: 1.5;
             }
         }
     </style>
@@ -167,78 +158,86 @@
 
     <div class="container">
         <h2 class="title">🚀 Our Research & Inspiration: Fueling Our Innovation!</h2>
-        <table class="research-table">
-            <thead>
-                <tr>
-                    <th>
-                        <div class="icon">🔍</div> Category
-                    </th>
-                    <th>
-                        <div class="icon">📚</div> Resource
-                    </th>
-                    <th>
-                        <div class="icon">✨</div> Why It's a Goldmine for Us
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="category-cell" data-label="Category">Academic Deep Dive</td>
-                    <td data-label="Resource">
-                        <ul class="link-list">
-                            <li><span class="icon">📖</span> IEEE Xplore / ACM Digital Library</li>
-                            <li><span class="icon">🎓</span> Google Scholar</li>
-                            <li><span class="icon">🧪</span> ResearchGate</li>
-                        </ul>
-                    </td>
-                    <td class="why-cell" data-label="Why It's a Goldmine for Us">
-                        We've gone beyond a simple search! These resources gave us the <span class="highlight">technical
-                            blueprints</span> and <span class="highlight">proven case studies</span> for building a
-                        robust system. Think "design and implementation" insights straight from the experts!
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category-cell" data-label="Category">Real-World Platforms</td>
-                    <td data-label="Resource">
-                        <ul class="link-list">
-                            <li><span class="icon">🔗</span> <a href="https://graduway.com/"
-                                    target="_blank">Graduway</a></li>
-                            <li><span class="icon">🔗</span> <a href="https://www.almabase.com/"
-                                    target="_blank">Almabase</a></li>
-                            <li><span class="icon">🔗</span> <a href="https://hivebrite.com/"
-                                    target="_blank">Hivebrite</a></li>
-                            <li><span class="icon">🔗</span> <a href="https://www.alumnforce.com/en/"
-                                    target="_blank">AlumnForce</a></li>
-                        </ul>
-                    </td>
-                    <td class="why-cell" data-label="Why It's a Goldmine for Us">
-                        We didn't reinvent the wheel—we studied the best! These platforms showed us what's working <span
-                            class="highlight">right now</span> in the market. We're drawing inspiration from their top
-                        features like mentoring, job boards, and event management to craft something even
-                        better.
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category-cell" data-label="Category">Market Insights & Trends</td>
-                    <td data-label="Resource">
-                        <ul class="link-list">
-                            <li><span class="icon">📰</span> <a href="https://edtechreview.in/" target="_blank">EdTech
-                                    Review</a></li>
-                            <li><span class="icon">📰</span> <a href="https://www.insidehighered.com/"
-                                    target="_blank">Inside Higher Ed</a></li>
-                            <li><span class="icon">📰</span> <a href="https://www.case.org/"
-                                    target="_blank">CASE.org</a></li>
-                        </ul>
-                    </td>
-                    <td class="why-cell" data-label="Why It's a Goldmine for Us">
-                        This is our secret sauce! These blogs and organizations gave us the bigger picture—the <span
-                            class="highlight">why</span> behind the need for our solution. We learned about the latest
-                        trends in alumni engagement, fundraising, and digital transformation from those on the
-                        front lines.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <!-- ✅ Table wrapper for scrollability -->
+        <div class="table-wrapper">
+            <table class="research-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="icon">🔍</div> Category
+                        </th>
+                        <th>
+                            <div class="icon">📚</div> Resource
+                        </th>
+                        <th>
+                            <div class="icon">✨</div> Why It's a Goldmine for Us
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="category-cell">Academic Deep Dive</td>
+                        <td>
+                            <ul class="link-list">
+                                <li><span class="icon">📖</span> IEEE Xplore / ACM Digital Library</li>
+                                <li><span class="icon">🎓</span> Google Scholar</li>
+                                <li><span class="icon">🧪</span> ResearchGate</li>
+                            </ul>
+                        </td>
+                        <td class="why-cell">
+                            We've gone beyond a simple search! These resources gave us the <span
+                                class="highlight">technical
+                                blueprints</span> and <span class="highlight">proven case studies</span> for building a
+                            robust system. Think "design and implementation" insights straight from the experts!
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="category-cell">Real-World Platforms</td>
+                        <td>
+                            <ul class="link-list">
+                                <li><span class="icon">🔗</span> <a href="https://graduway.com/"
+                                        target="_blank">Graduway</a></li>
+                                <li><span class="icon">🔗</span> <a href="https://www.almabase.com/"
+                                        target="_blank">Almabase</a></li>
+                                <li><span class="icon">🔗</span> <a href="https://hivebrite.com/"
+                                        target="_blank">Hivebrite</a></li>
+                                <li><span class="icon">🔗</span> <a href="https://www.alumnforce.com/en/"
+                                        target="_blank">AlumnForce</a></li>
+                            </ul>
+                        </td>
+                        <td class="why-cell">
+                            We didn't reinvent the wheel—we studied the best! These platforms showed us what's working
+                            <span class="highlight">right now</span> in the market. We're drawing inspiration from their
+                            top
+                            features like mentoring, job boards, and event management to craft something even
+                            better.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="category-cell">Market Insights & Trends</td>
+                        <td>
+                            <ul class="link-list">
+                                <li><span class="icon">📰</span> <a href="https://edtechreview.in/"
+                                        target="_blank">EdTech
+                                        Review</a></li>
+                                <li><span class="icon">📰</span> <a href="https://www.insidehighered.com/"
+                                        target="_blank">Inside Higher Ed</a></li>
+                                <li><span class="icon">📰</span> <a href="https://www.case.org/"
+                                        target="_blank">CASE.org</a></li>
+                            </ul>
+                        </td>
+                        <td class="why-cell">
+                            This is our secret sauce! These blogs and organizations gave us the bigger picture—the <span
+                                class="highlight">why</span> behind the need for our solution. We learned about the
+                            latest
+                            trends in alumni engagement, fundraising, and digital transformation from those on the
+                            front lines.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>
